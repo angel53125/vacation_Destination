@@ -59,7 +59,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>
         private VacationDestiation currentDestination = null;
         private  ImageView imvDelete;
         private  ImageView imvMakeCopy;
-
+        private ImageView imvFavorite;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -68,6 +68,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>
             tvName =  itemView.findViewById(R.id.tvPlaceName);
             imvDelete = itemView.findViewById(R.id.imvDelete);
             imvMakeCopy = itemView.findViewById(R.id.imvMakeCopy);
+            imvFavorite = itemView.findViewById(R.id.imvFavorite);
 
             imvDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
