@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     {
         RecyclerView rv = findViewById(R.id.recyclerView);
         //adapter
-        MyAdapter adapter = new MyAdapter();
+        MyAdapter adapter = new MyAdapter(getSupportFragmentManager(),Database.getData());
         rv.setAdapter(adapter);
         //manager
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);

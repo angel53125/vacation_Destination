@@ -162,7 +162,7 @@ public class Database {
 
         for (int i = 0;i < images.size();i++)
         {
-            allDestinations.add(new VacationDestiation(names.get(i),images.get(i)));
+            allDestinations.add(new VacationDestiation(names.get(i),images.get(i),false));
         }
     }
 

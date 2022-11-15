@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -15,11 +16,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>
 {
 
     private ArrayList<VacationDestiation> destinationList;
+    private FragmentManager fragmentManager;
+    public boolean swap;
 
 
-    public  MyAdapter()
+    public  MyAdapter(FragmentManager man, ArrayList<VacationDestiation> n)
     {
-        destinationList = Database.getData();
+        destinationList = n;
+        fragmentManager = man;
     }
 
     //inflate vacation row item
@@ -50,7 +54,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>
         holder.setData(vd,position);
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
 
         private TextView tvName;
@@ -69,6 +73,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>
             imvDelete = itemView.findViewById(R.id.imvDelete);
             imvMakeCopy = itemView.findViewById(R.id.imvMakeCopy);
             imvFavorite = itemView.findViewById(R.id.imvFavorite);
+
 
             imvDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -93,6 +98,27 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>
                 }
             });
 
+            imvFavorite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+
+                   if  (destinationList.get(currentPosition).getFave() == true)
+                    {
+                        imvFavorite.setImageResource(R.drawable.ic_fave);
+                        destinationList.get(currentPosition).setFave(false);
+
+                    }
+                     else {
+                       imvFavorite.setImageResource(R.drawable.ic_full);
+                       destinationList.get(currentPosition).setFave(true);
+                   }
+                     System.out.println("Status is " + destinationList.get(currentPosition).getFave());
+
+                }
+            });
+            itemView.setClickable(true);
+            itemView.setOnClickListener(this);
 
         }
 
@@ -105,6 +131,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>
 
         }
 
+        @Override
+        public void onClick(View view) {
+            DialogShowVaction dialog = new DialogShowVaction(currentDestination);
+            dialog.show(fragmentManager,"");
+
+        }
     }
 
 }
