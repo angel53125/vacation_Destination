@@ -160,6 +160,7 @@ public class Database {
         names.add("Sydney");
 
 
+        //This has to be changed
         for (int i = 0;i < images.size();i++)
         {
             allDestinations.add(new VacationDestiation(names.get(i),images.get(i),false));
